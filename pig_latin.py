@@ -3,43 +3,53 @@
 # Jordan Maloney
 # 13/4/21
 
-VOWELS = ["a", "e", "i", "o", "u"]
-COSONANTS = ["b", "c", "d", "f", "g", "h", "j", "k", "l",
-             "m", "n", "p", "q", "r", "s", "t", "v", "w", "x", "y", "z"]
 
-
-def sentence_input():
+def sentence_to_list(sentence):
     """
-    Takes an input from the user, and converts it to a list
+    Takes the sentence and turns it into a list
     """
-    loop = True
-    while loop == True:
-        try:
-            # Input sentence
-            sentence = input(
-                "Please input a sentence to be converted to Pig Latin(Without punctuation): "
-                ).lower()
-            # Trigger TypeError if punctuation is in sentence
-            for char in sentence:
-                if char not in VOWELS and char not in COSONANTS and char != " ":
-                    print("String" * "String")
-            loop = False
-        except:
-            TypeError
-            print("Please do not input punctuation.")
-            loop = True
     words = sentence.split(" ")
-    converter(words)
+    return words
 
 
+def vowel_converter(word):
+    """
+    Takes a word that starts with a vowel and converts it
+    to Pig Latin form
+    """
+    ADDER = "way"
+    new_word = word + ADDER
+    return new_word
 
-def converter(words):
+
+def consonant_converter(VOWELS, word):
+    """
+    Takes a word that starts with a consonant and converts it
+    to Pig Latin form
+    """
+    ADDER = "ay"
+    # Find the index of the first vowel
+    vowel_idx = 0
+    first_vowel = True
+    for letter in word:
+        if letter in VOWELS and first_vowel:
+            vowel_idx = word.index(letter)
+            first_vowel = False
+    # Take a slice of everything before the vowel
+
+    
+# Main routine
+while __name__ == "__main__":
+    sentence = input("Please type a sentence. ").lower()
+    # Convert sentence to list
+    words = sentence_to_list(sentence)
+    VOWELS = ["a", "e", "i", "o", "u"]
     for word in words:
-        if words[word][0] in COSONANTS:
-            words[word].append((words[word][0]), "ay")
-            words[word].remove(words[word][0])
-        else:
-            words[word].append((words[word][0]), "way")
-            words[word].remove(words[word][0])
-    print(words)
-sentence_input()
+        # Convert words which start with vowels
+        if word[0] in VOWELS:
+            word = vowel_converter(word)
+        # Convert words which start with consonants
+        elif (word[0] >= ord[97]
+              and word[0] <= ord[122]
+              and word[0] not in VOWELS):
+            word = consonant_converter(VOWELS, word)
